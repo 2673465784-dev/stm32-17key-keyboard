@@ -2,6 +2,8 @@
 
 测试与烧录记录见 [docs/test-report.md](docs/test-report.md)。
 
+故障排查记录见 [docs/troubleshooting.md](docs/troubleshooting.md)。
+
 ## 项目说明
 
 这是一个基于 STM32F103C8T6 和 QMK 的 17 键小键盘学习性复刻与代码归档项目，不是原创 PCB 设计。
