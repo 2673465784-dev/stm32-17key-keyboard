@@ -1,0 +1,8 @@
+{
+  "name": "w17-keymap-backup",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Read-only Vial keymap backup for W17PAD",
+  "scripts": { "backup": "node backup-keymap.cjs" },
+  "dependencies": { "node-hid": "3.4.0" }
+}

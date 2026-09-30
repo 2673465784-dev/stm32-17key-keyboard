@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/vial-kb/vial-qmk.git",
+  "commit": "6113857745929875b69b565a845a2708bb1f4f46",
+  "keyboard": "w17",
+  "keymap": "vial",
+  "python": "3.10.14",
+  "qmk_cli": "1.1.2",
+  "runner": "ubuntu-22.04",
+  "note": "New build baseline selected for this repository; not the unknown environment used for the author's w17_pad.bin."
+}
