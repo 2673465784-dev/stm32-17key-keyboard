@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720">
+  <title>W17PAD SWD 触点和 ST-Link V2 信号对应</title>
+  <desc>USB-C 在左、复位键在右下的 PCB 背面。右边四个触点从上到下为 GND、3.3V、SWCLK、SWDIO。所用紫色 ST-Link 对应 6、8、2、4 号脚。</desc>
+  <rect width="1100" height="720" fill="#f5f7fa"/>
+  <g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" fill="#172b4d">
+    <text x="48" y="65" font-size="32" font-weight="bold">W17PAD · SWD 接线示意</text>
+    <text x="48" y="108" font-size="22">PCB 背面：Type-C 朝左，复位键在右下（非比例图）</text>
+    <rect x="70" y="170" width="430" height="430" rx="22" fill="#e0f2e9" stroke="#25805e" stroke-width="3"/>
+    <rect x="38" y="288" width="62" height="92" rx="8" fill="#d5dbe1" stroke="#52616b" stroke-width="3"/>
+    <text x="130" y="345" font-size="24">Type-C</text>
+    <rect x="254" y="449" width="91" height="91" fill="#455a64"/>
+    <text x="269" y="503" font-size="22" fill="white">MCU</text>
+    <circle cx="405" cy="520" r="27" fill="#e3e6e8" stroke="#52616b" stroke-width="3"/>
+    <text x="363" y="575" font-size="20">复位键</text>
+    <g fill="#dab96b" stroke="#89671d" stroke-width="2">
+      <rect x="456" y="351" width="24" height="24"/>
+      <circle cx="468" cy="418" r="12"/>
+      <circle cx="468" cy="473" r="12"/>
+      <circle cx="468" cy="528" r="12"/>
+    </g>
+    <text x="554" y="215" font-size="24" font-weight="bold">PCB 触点 → 烧录器信号</text>
+    <g stroke="#52616b" stroke-width="2">
+      <path d="M480 363 H536"/><path d="M480 418 H536"/>
+      <path d="M480 473 H536"/><path d="M480 528 H536"/>
+    </g>
+    <text x="554" y="371" font-size="24">1 方形 · GND → GND（本次 6 号）</text>
+    <text x="554" y="426" font-size="24">2 圆形 · 3.3V → 3.3V（本次 8 号）</text>
+    <text x="554" y="481" font-size="24">3 圆形 · SWCLK → SWCLK（本次 2 号）</text>
+    <text x="554" y="536" font-size="24">4 圆形 · SWDIO → SWDIO（本次 4 号）</text>
+    <text x="554" y="275" font-size="20">编号仅适用于本次紫色 ST-Link V2。</text>
+    <text x="554" y="308" font-size="20">其他烧录器以信号丝印为准。</text>
+    <text x="70" y="654" font-size="22" fill="#a32929">勿接 5V；SWD 连接时拔掉 PCB 的 Type-C，保持四个针尖稳定接触。</text>
+  </g>
+</svg>

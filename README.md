@@ -1,6 +1,6 @@
 # STM32 17 键数字小键盘｜个人复刻记录
 
-基于 [morempty 的 STM32 数字小键盘](https://oshwhub.com/morempty/STM32-PAD-17jian-shuo-zi-jian-pa)制作。PCB 设计和原始固件来自原作者；本仓库记录我的焊接、烧录、排障、装配和键位调整过程，并保存原项目的 `w17` 键盘源码快照。它不是原创 PCB 设计。
+基于 [morempty 的 STM32 数字小键盘](https://oshwhub.com/morempty/STM32-PAD-17jian-shuo-zi-jian-pa)制作。PCB 设计和原始固件来自原作者；本仓库记录个人焊接、烧录、排障、装配和键位调整过程，并维护基于原项目 `w17` 目录的键盘配置源码。
 
 <p align="center">
   <img src="assets/photos/finished-front.webp" alt="完成装配并点亮 RGB 灯的 17 键数字小键盘" width="560">
@@ -38,20 +38,25 @@
 - **首次烧录**：使用 ST-Link V2 通过 PCB 的四个 SWD 触点写入 Bootloader，再通过 Type-C 和 QMK Toolbox 写入 QMK 固件。接线、地址、校验和驱动处理见 [烧录指南](docs/flashing.md)。
 - **遇到单键不响应**：先检查轴体、热插拔座、二极管及焊点，再核对 QMK/Vial 键位。实际遇到的 `9` 键和 `Num` 键问题见 [故障排查](docs/troubleshooting.md)。
 
-本仓库没有发布已编译的 `.bin` 文件。请从[原项目的附件区](https://oshwhub.com/morempty/STM32-PAD-17jian-shuo-zi-jian-pa)取得与该板匹配的两个固件文件，不要把 Bootloader 和键盘固件选反。
+`v1.0.0` Release 没有附 `.bin` 文件。已实测的两个固件来自[原项目附件区](https://oshwhub.com/morempty/STM32-PAD-17jian-shuo-zi-jian-pa)；本仓库新源码的编译产物可从 Actions 下载，但尚未完成实物刷写验收，详见[编译说明](docs/building.md)。不要把 Bootloader 和键盘应用固件选反。
 
 ## 仓库内容
 
 | 路径 | 内容 |
 | --- | --- |
-| [`firmware/qmk/w17/`](firmware/qmk/w17/) | 原项目 `w17` 键盘目录的源码快照 |
+| [`firmware/qmk/w17/`](firmware/qmk/w17/) | 基于原作者目录调整的键位与硬件配置 |
+| [`firmware/build-lock.json`](firmware/build-lock.json) | 选定的 Vial-QMK、Python 与工具链基线 |
+| [`config/vial/`](config/vial/) | 从实物读取的 4 层键位备份和恢复说明 |
+| [`docs/building.md`](docs/building.md) | 固定版本编译、Actions 产物与验证边界 |
 | [`docs/flashing.md`](docs/flashing.md) | ST-Link 与 QMK Toolbox 两阶段烧录步骤 |
 | [`docs/keymap.md`](docs/keymap.md) | 当前键位、Vial 改键与源码差异 |
 | [`docs/troubleshooting.md`](docs/troubleshooting.md) | 本次复刻中遇到的故障和处理 |
 | [`docs/test-report.md`](docs/test-report.md) | 实物、烧录和功能测试记录 |
+| [`docs/test-checklist.md`](docs/test-checklist.md) | 逐键、USB、睡眠唤醒与装配验收表 |
+| [`docs/assembly.md`](docs/assembly.md) | 原作者 3D 模型、打印建议与装配顺序 |
 | [`assets/photos/`](assets/photos/) | 本次完成品照片，已缩小并去除相机元数据 |
 
-`firmware/qmk/w17/` 仅是键盘目录，不包含完整 QMK/Vial 构建环境或锁定的上游版本，因此**不能仅凭此仓库直接重现编译**。仓库中的原始 `keymap.c` 仍将 `Num` 定义为 `LT(1,KC_NUM)`；本次实物的普通 Num Lock 是通过 Vial 写入设备动态键位的，详见[键位与灯效](docs/keymap.md)。
+2026-09-30 起，源码默认 Num 键已同步为普通 Num Lock，并建立[固定版本编译流程](docs/building.md)。`v1.0.0` 和原作者 `w17_pad.bin` 仍保留原先的双功能键。新的编译产物与正在使用的原作者固件是不同文件；编译结果和实物验收分别记录。键位备份不包含宏和完整灯光配置，范围见[备份说明](config/vial/README.md)。
 
 ## 来源与许可
 
