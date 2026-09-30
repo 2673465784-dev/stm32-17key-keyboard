@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/vial-kb/vial-qmk.git",
-  "commit": "6113857745929875b69b565a845a2708bb1f4f46",
+  "commit": "42ba6375a6efde2c0190ca5519d48e7e50bdf469",
   "keyboard": "w17",
   "keymap": "vial",
   "python": "3.10.14",

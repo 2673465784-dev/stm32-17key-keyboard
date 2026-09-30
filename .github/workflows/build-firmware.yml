@@ -18,22 +18,27 @@ jobs:
       - name: Install ARM toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi libusb-1.0-0
+          sudo apt-get install -y 'gcc-arm-none-eabi=15:10.3-2021.07-4' binutils-arm-none-eabi libnewlib-arm-none-eabi libusb-1.0-0 dfu-util
       - name: Fetch pinned Vial-QMK and submodules
         run: |
-          python -c 'import json; d=json.load(open("firmware/build-lock.json")); assert d["commit"] == "6113857745929875b69b565a845a2708bb1f4f46"'
+          python -c 'import json; d=json.load(open("firmware/build-lock.json")); assert d["commit"] == "42ba6375a6efde2c0190ca5519d48e7e50bdf469"'
           git init build/vial-qmk
           git -C build/vial-qmk remote add origin https://github.com/vial-kb/vial-qmk.git
-          git -C build/vial-qmk fetch --depth 1 origin 6113857745929875b69b565a845a2708bb1f4f46
+          git -C build/vial-qmk fetch --depth 1 origin 42ba6375a6efde2c0190ca5519d48e7e50bdf469
           git -C build/vial-qmk checkout --detach FETCH_HEAD
           git -C build/vial-qmk submodule update --init --depth 1 lib/chibios lib/chibios-contrib lib/printf
           cp -R firmware/qmk/w17 build/vial-qmk/keyboards/w17
+          test -f build/vial-qmk/quantum/vial.c
+          test -f build/vial-qmk/quantum/vialrgb.c
       - name: Install QMK Python dependencies
         run: |
           python -m pip install 'qmk==1.1.2' 'milc==1.6.8' -r build/vial-qmk/requirements.txt
       - name: Build firmware
         working-directory: build/vial-qmk
-        run: make w17:vial -j2
+        run: |
+          make w17:vial -j2
+          arm-none-eabi-nm .build/w17_vial.elf | grep ' vial_handle_cmd$'
+          python -c 'import struct; b=open("w17_vial.bin","rb").read(); sp,reset=struct.unpack("<II",b[:8]); assert 8 < len(b) <= 57344; assert 0x20000000 < sp <= 0x20005000; assert reset & 1 and 0x08002000 <= (reset & ~1) < 0x08010000; print("STM32F103C8 application checks passed:",len(b),hex(sp),hex(reset))'
       - name: Package corresponding source and build record
         run: |
           mkdir -p dist
