@@ -30,7 +30,7 @@ jobs:
           cp -R firmware/qmk/w17 build/vial-qmk/keyboards/w17
       - name: Install QMK Python dependencies
         run: |
-          python -m pip install 'qmk==1.1.2' -r build/vial-qmk/requirements.txt
+          python -m pip install 'qmk==1.1.2' 'milc==1.6.8' -r build/vial-qmk/requirements.txt
       - name: Build firmware
         working-directory: build/vial-qmk
         run: make w17:vial -j2
