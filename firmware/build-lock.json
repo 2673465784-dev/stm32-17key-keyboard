@@ -5,6 +5,8 @@
   "keymap": "vial",
   "python": "3.10.14",
   "qmk_cli": "1.1.2",
+  "milc": "1.6.8",
+  "gcc_arm_none_eabi": "10.3.1 (Ubuntu package 15:10.3-2021.07-4)",
   "runner": "ubuntu-22.04",
   "note": "New build baseline selected for this repository; not the unknown environment used for the author's w17_pad.bin."
 }

@@ -2,7 +2,6 @@
 /*qmk compile -kb w17_pad/w17 -km default*/
 /*qmk compile -kb w17_pad/w17 -km vial*/
 
-#include "config_common.h"
 
 
 /* key matrix size */
@@ -29,7 +28,7 @@
 /*RGB MATRIX*/
 
 // RGB pin
-#define RGB_DI_PIN B13
+#define WS2812_DI_PIN B13
 // RGB number
 #define RGB_MATRIX_LED_COUNT 17
 #define DRIVER_LED_TOTAL 17
